@@ -7,25 +7,36 @@ public class CharacterMovement : MonoBehaviour
 
     Vector3 playerVelocity;
     Vector3 move;
-
+    public GameObject CharacterPlaceholder;
+    Vector3 originalPlayerPosition;
     public float walkSpeed = 5;
     public float runSpeed = 8; 
     public float jumpHeight = 2;
     public float gravity = -9.18f;
-    
+    float rotationY =0.0f;
+    float verticalInput = 0.0f;
+    float horizontalInput = 0.0f;
+    public float speedValue = 50.0f;
+    public float rotationSpeed = 200.0f;
+    bool isGrounded;
+    public float timeSlow = 0.5f;
     private CharacterController controller;
-    private Animator animator;
+    public float PlayerHealth;
+    //private Animator animator;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
+        originalPlayerPosition = CharacterPlaceholder.transform.position;
     }
 
     public void Update()
     {
         ProcessMovement();
         ProcessGravity();
+        SlowDownTime();
+        Death();
     }
 
     public void LateUpdate()
@@ -35,50 +46,32 @@ public class CharacterMovement : MonoBehaviour
 
     void DisableRootMotion()
     {
-        animator.applyRootMotion = false;  
+        //animator.applyRootMotion = false;  
     }
 
     void UpdateAnimator()
     {
-        bool isGrounded = controller.isGrounded; 
-        // TODO 
-        if(move != Vector3.zero)
-        {
-            if(GetMovementSpeed() == runSpeed)
-            {
-                animator.SetFloat("Speed", 1f);
-            }
-            else
-            {
-                animator.SetFloat("Speed", 0.5f);
-            }
-        }
-        else 
-        {
-            animator.SetFloat("Speed", 0f);
-        }
-        animator.SetBool("IsGrounded", isGrounded);
-        if(Input.GetButtonDown("Fire1"))
-        {
-            animator.applyRootMotion = true;
-            animator.SetTrigger("doRoll");
-        }
-        
-        }
+
+    }
 
     void ProcessMovement()
     { 
         move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        if (move != Vector3.zero)
-        {
-            gameObject.transform.forward = move;
-        }
+        Vector3 fowardMovement = Input.GetAxis("Vertical") * transform.forward;
+        Vector3 rightMovement = Input.GetAxis("Horizontal") * transform.right;
+        move = (fowardMovement + rightMovement);
+        float mouseX = Input.GetAxis("Mouse X");
+        
+        rotationY += mouseX*Time.deltaTime * rotationSpeed;
+        transform.rotation = Quaternion.Euler(0.0f,rotationY,0.0f);
+
+        controller.Move(move * Time.deltaTime * GetMovementSpeed());
     }
 
     //Movement script!
     public void ProcessGravity()
     {
-        bool isGrounded = controller.isGrounded;
+        
         // Since there is no physics applied on character controller we have this applies to reapply gravity
         
         if (isGrounded  )
@@ -98,19 +91,41 @@ public class CharacterMovement : MonoBehaviour
             playerVelocity.y += gravity * Time.deltaTime;
         }       
 
-        controller.Move(move * Time.deltaTime * GetMovementSpeed() + playerVelocity * Time.deltaTime);
-        
+        controller.Move(playerVelocity * Time.deltaTime);
+        isGrounded = controller.isGrounded;
     }
 
-    float GetMovementSpeed()
-    {
-        if (Input.GetButton("Fire3"))// Left shift
+     float GetMovementSpeed()
+     {
+        return walkSpeed;
+    //     if (Input.GetButton("Fire3"))// Left shift
+    //     {
+    //         return runSpeed;
+    //     }
+    //     else
+    //     {
+    //         return walkSpeed;
+    //     }
+     }
+
+     void SlowDownTime()
+     {
+        if(Input.GetButtonDown("Fire3"))
         {
-            return runSpeed;
+            Time.timeScale = timeSlow;
         }
-        else
+        if(Input.GetButtonUp("Fire3"))
         {
-            return walkSpeed;
+            Time.timeScale = 1f;
+        }
+     }
+
+     public void Death()
+    {
+        if(PlayerHealth == 0)
+        {
+             CharacterPlaceholder.transform.position = originalPlayerPosition;
+             PlayerHealth= 100;
         }
     }
 }
