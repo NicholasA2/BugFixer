@@ -14,8 +14,8 @@ public class CharacterMovement : MonoBehaviour
     public float jumpHeight = 2;
     public float gravity = -9.18f;
     float rotationY =0.0f;
-    float verticalInput = 0.0f;
-    float horizontalInput = 0.0f;
+    //float verticalInput = 0.0f;
+    //float horizontalInput = 0.0f;
     public float speedValue = 50.0f;
     public float rotationSpeed = 200.0f;
     bool isGrounded;
@@ -128,4 +128,5 @@ public class CharacterMovement : MonoBehaviour
              PlayerHealth= 100;
         }
     }
+
 }
