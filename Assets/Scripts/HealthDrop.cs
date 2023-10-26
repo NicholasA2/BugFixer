@@ -9,6 +9,7 @@ public class HealthDrop : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.AddHealingToInventory();
+            GameManager.Instance.PickupScore();
             Destroy(gameObject);
         }
     }
