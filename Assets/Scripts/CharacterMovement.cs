@@ -21,7 +21,7 @@ public class CharacterMovement : MonoBehaviour
     bool isGrounded;
     public float timeSlow = 0.5f;
     private CharacterController controller;
-    public float PlayerHealth;
+    public float PlayerHealth = 10;
     //private Animator animator;
 
     private void Start()
@@ -37,6 +37,7 @@ public class CharacterMovement : MonoBehaviour
         ProcessGravity();
         SlowDownTime();
         Death();
+        Heal();
     }
 
     public void LateUpdate()
@@ -126,6 +127,19 @@ public class CharacterMovement : MonoBehaviour
         {
              CharacterPlaceholder.transform.position = originalPlayerPosition;
              PlayerHealth= 100;
+        }
+    }
+
+    public void Heal()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            if (GameManager.Instance.healingPotions > 0)
+            {
+                PlayerHealth += 50;
+                GameManager.Instance.healingPotions -= 1;
+                Debug.Log(PlayerHealth);
+            }
         }
     }
 
