@@ -9,8 +9,8 @@ public class AmmoDrop : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.AddAmmoToInventory();
+            GameManager.Instance.PickupScore();
             Destroy(gameObject);
-            Debug.Log(GameManager.Instance.ammo);
         }
     }
 }

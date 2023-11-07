@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public int healingPotions = 1;
     public int ammo = 5;
+    public int score = 0;
 
     void Start()
     {
@@ -40,5 +41,10 @@ public class GameManager : MonoBehaviour
     public void AddAmmoToInventory()
     {
         ammo += 5;
+    }
+
+    public void PickupScore()
+    {
+        score += 10;
     }
 }
