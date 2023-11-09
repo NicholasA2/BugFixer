@@ -6,7 +6,8 @@ public class Crossbow : MonoBehaviour
 {
     public GameObject boltPrefab;
     public Transform spawnPoint;
-    public float boltSpeed = 10f;
+    public float boltSpeed = 20f;
+    public float shootForce = 10f;
 
     void Update()
     {
@@ -21,6 +22,11 @@ public class Crossbow : MonoBehaviour
         if (boltPrefab != null && spawnPoint != null)
         {
             GameObject newBolt = Instantiate(boltPrefab, spawnPoint.position, spawnPoint.rotation);
+
+            Vector3 shootDirection = spawnPoint.forward;
+            newBolt.transform.position += shootDirection * shootForce * Time.deltaTime;
+        
+    
 
             // Get the Rigidbody component of the bolt if it has one
             Rigidbody boltRigidbody = newBolt.GetComponent<Rigidbody>();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -23,12 +24,17 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController controller;
     public float PlayerHealth = 10;
     //private Animator animator;
+    public AudioSource aSource;
+    public AudioClip track1;
+    public AudioClip track2;
+    public AudioClip track3;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         //animator = GetComponent<Animator>();
         originalPlayerPosition = CharacterPlaceholder.transform.position;
+        Music();
     }
 
     public void Update()
@@ -141,6 +147,23 @@ public class CharacterMovement : MonoBehaviour
                 Debug.Log(PlayerHealth);
             }
         }
+    }
+
+    public void Music() 
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 1) {
+            aSource.clip = track1;
+            aSource.loop = true;
+        }
+        if(SceneManager.GetActiveScene().buildIndex == 2) {
+            aSource.clip = track2;
+            aSource.loop = true;
+        }
+        if(SceneManager.GetActiveScene().buildIndex == 3) {
+            aSource.clip = track3;
+            aSource.loop = true;
+        }
+        aSource.Play();
     }
 
 }
