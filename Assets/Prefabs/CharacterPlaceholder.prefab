@@ -283,7 +283,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4870278358529252951}
-  m_LocalRotation: {x: 0.0009540339, y: 0.34398615, z: 0.0029591254, w: 0.9389696}
+  m_LocalRotation: {x: -0.0001220887, y: 0.00000037929703, z: 0.0031067182, w: 0.9999952}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -291,7 +291,7 @@ Transform:
   - {fileID: 4044292311275827413}
   m_Father: {fileID: 4870278357716728671}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.014, y: 40.24, z: 0.356}
+  m_LocalEulerAnglesHint: {x: -0.014, y: 0, z: 0.356}
 --- !u!20 &4870278358529252945
 Camera:
   m_ObjectHideFlags: 0
@@ -391,4 +391,3 @@ MonoBehaviour:
   spawnPoint: {fileID: 4044292311275827413}
   boltSpeed: 1000
   shootForce: 10
-  Bolt: {fileID: 6604487109534999786, guid: 9aef3623f1bcbcb46b0b6ddde6504a91, type: 3}

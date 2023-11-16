@@ -62,15 +62,17 @@ public class CharacterMovement : MonoBehaviour
     }
 
     void ProcessMovement()
-    { 
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+        rotationY += mouseX * Time.deltaTime * rotationSpeed;
+        transform.rotation = Quaternion.Euler(0.0f, rotationY, 0.0f);
+
         move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 forwardMovement = Input.GetAxis("Vertical") * transform.forward;
         Vector3 rightMovement = Input.GetAxis("Horizontal") * transform.right;
         move = (forwardMovement + rightMovement);
-        float mouseX = Input.GetAxis("Mouse X");
         
-        rotationY += mouseX*Time.deltaTime * rotationSpeed;
-        transform.rotation = Quaternion.Euler(0.0f,rotationY,0.0f);
+        
 
         controller.Move(move * Time.deltaTime * GetMovementSpeed());
     }
