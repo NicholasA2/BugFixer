@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -10,10 +12,17 @@ public class GameManager : MonoBehaviour
     public int healingPotions = 1;
     public int ammo = 5;
     public int score = 0;
+   
+    private GameObject[] targets;
+    public GameObject gateGameObject;
 
     void Start()
     {
-        
+        targets = GameObject.FindGameObjectsWithTag("Target");
+        if (gateGameObject == null)
+        {
+            gateGameObject = GameObject.FindGameObjectWithTag("Gate");
+        }
     }
 
     private void Awake()
@@ -30,7 +39,37 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (AreAllTargetsGreen()) //add condition if all enemies are destroyed
+        {
+            Debug.Log("All targets are green!");
+            // Check if the gateGameObject has the GateComponent script attached
+            GateComponent gateComponent = gateGameObject.GetComponent<GateComponent>();
+
+            if (gateComponent != null)
+            {
+                // Call the Open method on the GateComponent script
+                gateComponent.Open();
+            }
+
+        }
+    }
+
+ 
+    private bool AreAllTargetsGreen()
+    {
+        foreach (GameObject target in targets)
+        {
+            TargetComponent targetComponent = target.GetComponent<TargetComponent>();
+            if (targetComponent != null)
+            {
+                if (targetComponent.GetColor() != Color.green)
+                {
+                    return false; // At least one target is not green
+                }
+            }
+        }
+
+        return true; 
     }
 
     public void AddHealingToInventory()

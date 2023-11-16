@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Health
   - Ammo
+  - Target
+  - Gate
+  - Goal1
   layers:
   - Default
   - TransparentFX
