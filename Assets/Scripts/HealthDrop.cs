@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class HealthDrop : MonoBehaviour
 {
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
-            GameManager.Instance.AddHealingToInventory();
-            GameManager.Instance.PickupScore();
-            Destroy(gameObject);
+            //GameManager.Instance.AddHealingToInventory();
+            //GameManager.Instance.PickupScore();
+            gameObject.SetActive(false);
+            Debug.Log("Picked up");
         }
     }
 }
