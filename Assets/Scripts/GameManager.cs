@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int healingPotions = 1;
     public int ammo = 5;
     public int score = 0;
+    public int enemyAmount = 10;
    
     private GameObject[] targets;
     public GameObject gateGameObject;
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
             }
 
         }
+        OpenGates();
     }
 
  
@@ -85,5 +87,13 @@ public class GameManager : MonoBehaviour
     public void PickupScore()
     {
         score += 10;
+    }
+
+    public void OpenGates()
+    {
+        if(enemyAmount == 0)
+        {
+            //destroy barrier
+        }
     }
 }
