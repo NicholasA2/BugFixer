@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
     public float health = 5f;
     public float speed = 3f;
     private NavMeshAgent nav;
-    public Transform move;
+    Transform move;
+  
 
     private void Awake()
     {
@@ -18,7 +19,11 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            move = player.transform;
+        }
     }
 
     // Update is called once per frame
