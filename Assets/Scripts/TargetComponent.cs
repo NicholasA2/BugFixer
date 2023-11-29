@@ -18,6 +18,7 @@ public class TargetComponent : MonoBehaviour
         if (other.gameObject.tag == "Ammo")
         {
             targetRenderer.material.color = Color.green;
+            InvisibleBarrier.Instance.TutorialProgress();
         }
     }
 
