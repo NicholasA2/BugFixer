@@ -9981,6 +9981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 500
+  swordHitClip: {fileID: 8300000, guid: b438cd49dd98e634bafceca3d67d05a4, type: 3}
 --- !u!1 &1782112008
 GameObject:
   m_ObjectHideFlags: 0
