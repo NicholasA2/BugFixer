@@ -19,31 +19,35 @@ public class Crossbow : MonoBehaviour
 
     void ShootBolt()
     {
-        if (boltPrefab != null && spawnPoint != null)
+        if (GameManager.Instance.ammo > 0)
         {
-            GameObject newBolt = Instantiate(boltPrefab, spawnPoint.position, spawnPoint.rotation);
-
-            Vector3 shootDirection = spawnPoint.forward;
-            newBolt.transform.position += shootDirection * shootForce * Time.deltaTime;
-        
-    
-
-            // Get the Rigidbody component of the bolt if it has one
-            Rigidbody boltRigidbody = newBolt.GetComponent<Rigidbody>();
-
-            if (boltRigidbody != null)
+            if (boltPrefab != null && spawnPoint != null)
             {
-                // Apply forward force to the bolt to simulate a ranged attack
-                boltRigidbody.velocity = spawnPoint.forward * boltSpeed;
+                GameObject newBolt = Instantiate(boltPrefab, spawnPoint.position, spawnPoint.rotation);
+
+                Vector3 shootDirection = spawnPoint.forward;
+                newBolt.transform.position += shootDirection * shootForce * Time.deltaTime;
+
+
+
+                // Get the Rigidbody component of the bolt if it has one
+                Rigidbody boltRigidbody = newBolt.GetComponent<Rigidbody>();
+
+                if (boltRigidbody != null)
+                {
+                    // Apply forward force to the bolt to simulate a ranged attack
+                    boltRigidbody.velocity = spawnPoint.forward * boltSpeed;
+                    GameManager.Instance.ammo--;
+                }
+                else
+                {
+                    Debug.LogError("The boltPrefab does not have a Rigidbody component.");
+                }
             }
             else
             {
-                Debug.LogError("The boltPrefab does not have a Rigidbody component.");
+                Debug.LogError("boltPrefab or spawnPoint not assigned.");
             }
-        }
-        else
-        {
-            Debug.LogError("boltPrefab or spawnPoint not assigned.");
         }
     }
 }

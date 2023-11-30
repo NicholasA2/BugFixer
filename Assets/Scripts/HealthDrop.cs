@@ -12,7 +12,6 @@ public class HealthDrop : MonoBehaviour
             //GameManager.Instance.AddHealingToInventory();
             //GameManager.Instance.PickupScore();
             gameObject.SetActive(false);
-            Debug.Log("Picked up");
         }
     }
 }

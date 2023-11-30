@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int ammo = 5;
     public int score = 0;
     public int enemyAmount = 10;
+    public int health = 10;
    
     private GameObject[] targets;
     public GameObject gateGameObject;
@@ -42,11 +43,11 @@ public class GameManager : MonoBehaviour
     {
         if (AreAllTargetsGreen()) //add condition if all enemies are destroyed
         {
-            Debug.Log("All targets are green!");
+            //Debug.Log("All targets are green!");
             // Check if the gateGameObject has the GateComponent script attached
             GateComponent gateComponent = gateGameObject.GetComponent<GateComponent>();
 
-            if (gateComponent != null)
+            if (gateComponent != null && enemyAmount == 0)
             {
                 // Call the Open method on the GateComponent script
                 gateComponent.Open();
@@ -95,5 +96,10 @@ public class GameManager : MonoBehaviour
         {
             //destroy barrier
         }
+    }
+
+    public void TakeDamage()
+    {
+        health -= 2;
     }
 }

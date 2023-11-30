@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5186097219848118629}
   - component: {fileID: 5186097219848118651}
   - component: {fileID: -8494441092409371452}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: The t-poser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8359710184222564754}
   - component: {fileID: 1008517756042106636}
   - component: {fileID: 8716985796588735443}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

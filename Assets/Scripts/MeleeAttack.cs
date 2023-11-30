@@ -5,20 +5,26 @@ using UnityEngine;
 public class MeleeAttack : MonoBehaviour
 {
     public float attackRange = 1.5f; // Range of the melee attack.
-    public int attackDamage = 10;    // Amount of damage inflicted per attack.
+    public int attackDamage = 3;    // Amount of damage inflicted per attack.
     public LayerMask enemyLayer;     // Layer mask for identifying enemies.
     public float attackCooldown = 1f; // Cooldown between attacks.
-
+    float timer = 0f;
     private float nextAttackTime = 0f;
-
+    void Start()
+    {
+        timer = attackCooldown;
+    }
     void Update()
     {
-        if (Time.time >= nextAttackTime)
+        timer -= Time.deltaTime;
+        if (timer <= 0.0f)
         {
-            if (Input.GetMouseButtonDown(0))
+            
+            if (Input.GetMouseButtonDown(1))
             {
+                Debug.Log("Attack");
                 Attack();
-                nextAttackTime = Time.time + 1f / attackCooldown;
+                timer = attackCooldown;
             }
         }
     }
@@ -30,13 +36,15 @@ public class MeleeAttack : MonoBehaviour
 
         foreach (Collider enemy in hitEnemies)
         {
+            Debug.Log(enemy.name);
             // Check if the detected object has an EnemyHealth component.
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-
+            Enemy enemyHealth = enemy.GetComponent<Enemy>();
+            Debug.Log(enemyHealth);
             if (enemyHealth != null)
             {
+                
                 // Deal damage to the enemy.
-                enemyHealth.TakeDamage(attackDamage);
+                enemyHealth.ProcessHit(attackDamage);
             }
         }
     }

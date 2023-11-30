@@ -32,6 +32,18 @@ public class Enemy : MonoBehaviour
         nav.destination = move.position;
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Ammo")
+        {
+            ProcessHit(1);
+        }
+        if(other.gameObject.tag == "Player")
+        {
+            GameManager.Instance.TakeDamage();
+        }
+    }
+
     public void ProcessHit(float damage)
     {
         health -= damage;

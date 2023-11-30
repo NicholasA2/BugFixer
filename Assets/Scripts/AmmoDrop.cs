@@ -6,11 +6,11 @@ public class AmmoDrop : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
             GameManager.Instance.AddAmmoToInventory();
             GameManager.Instance.PickupScore();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

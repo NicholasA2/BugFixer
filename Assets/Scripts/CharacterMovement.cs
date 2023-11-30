@@ -22,7 +22,6 @@ public class CharacterMovement : MonoBehaviour
     bool isGrounded;
     public float timeSlow = 0.5f;
     private CharacterController controller;
-    public float PlayerHealth = 10;
     //private Animator animator;
     public AudioSource aSource;
     public AudioClip track1;
@@ -131,10 +130,11 @@ public class CharacterMovement : MonoBehaviour
 
      public void Death()
     {
-        if(PlayerHealth == 0)
+        if(GameManager.Instance.health <= 0)
         {
              CharacterPlaceholder.transform.position = originalPlayerPosition;
-             PlayerHealth= 100;
+             GameManager.Instance.health= 10;
+            GameManager.Instance.score -= 500;
         }
     }
 
@@ -144,9 +144,8 @@ public class CharacterMovement : MonoBehaviour
         {
             if (GameManager.Instance.healingPotions > 0)
             {
-                PlayerHealth += 50;
+                GameManager.Instance.health += 3;
                 GameManager.Instance.healingPotions -= 1;
-                Debug.Log(PlayerHealth);
             }
         }
     }
