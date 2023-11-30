@@ -7,12 +7,24 @@ public class SwordController : MonoBehaviour
     public float rotationSpeed = 800f; // Adjust the speed as needed
     private bool isAttacking = false;
 
+    public AudioClip swordHitClip; // Assign your sword hit sound in the Unity Editor
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        // Add an AudioSource component to this GameObject
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = swordHitClip;
+        audioSource.playOnAwake = false; // Ensure the sound doesn't play automatically on startup
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(1) && !isAttacking)
         {
             // Trigger attack animation or movement
             StartCoroutine(Attack());
+            audioSource.Play();
         }
     }
 
