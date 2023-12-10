@@ -166,4 +166,17 @@ public class CharacterMovement : MonoBehaviour
         }
         aSource.Play();
     }
+
+    public void Hurt()
+    {
+        GameManager.Instance.health--;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Hurt();
+        }
+    }
 }

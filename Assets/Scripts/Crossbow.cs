@@ -8,6 +8,7 @@ public class Crossbow : MonoBehaviour
     public Transform spawnPoint;
     public float boltSpeed = 20f;
     public float shootForce = 10f;
+    public AudioSource source;
 
     void Update()
     {
@@ -38,6 +39,7 @@ public class Crossbow : MonoBehaviour
                     // Apply forward force to the bolt to simulate a ranged attack
                     boltRigidbody.velocity = spawnPoint.forward * boltSpeed;
                     GameManager.Instance.ammo--;
+                    source.Play();
                 }
                 else
                 {

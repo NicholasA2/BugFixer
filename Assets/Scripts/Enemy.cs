@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class Enemy : MonoBehaviour
     public float speed = 3f;
     private NavMeshAgent nav;
     Transform move;
-  
+    public AudioSource source;
+    public Transform blood;
 
     private void Awake()
     {
@@ -47,10 +49,22 @@ public class Enemy : MonoBehaviour
     public void ProcessHit(float damage)
     {
         health -= damage;
-        if(health <= 0)
+        source.Play();
+        if (blood)
+        {
+            GameObject ouch = ((Transform)Instantiate(blood, this.transform.position, this.transform.rotation)).gameObject;
+            Destroy(ouch, 2.0f);
+        }
+        if (health <= 0)
         {
             Destroy(gameObject);
             GameManager.Instance.enemyAmount -= 1;
+            if(SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                FirstBarricade.Instance.ClearingEnemies();
+                SecondBarricade.Instance.ClearingEnemies();
+                FinalBarricade.Instance.ClearingEnemies();
+            }
         }
     }
 }
