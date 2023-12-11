@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
         nav.destination = move.position;
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Ammo")
         {

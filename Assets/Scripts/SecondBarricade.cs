@@ -32,7 +32,7 @@ public class SecondBarricade : MonoBehaviour
     public void ClearingEnemies()
     {
         progress++;
-        if (progress >= 6)
+        if (progress == 6)
         {
             OpenSecondBarricade();
         }

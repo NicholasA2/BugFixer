@@ -20,10 +20,23 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        targets = GameObject.FindGameObjectsWithTag("Target");
-        if (gateGameObject == null)
+        if(SceneManager.GetActiveScene().buildIndex == 1)
         {
-            gateGameObject = GameObject.FindGameObjectWithTag("Gate");
+            targets = GameObject.FindGameObjectsWithTag("Target");
+            if (gateGameObject == null)
+            {
+                gateGameObject = GameObject.FindGameObjectWithTag("Gate");
+            }
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 4 || SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -41,20 +54,24 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (AreAllTargetsGreen()) //add condition if all enemies are destroyed
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            //Debug.Log("All targets are green!");
-            // Check if the gateGameObject has the GateComponent script attached
-            GateComponent gateComponent = gateGameObject.GetComponent<GateComponent>();
-
-            if (gateComponent != null && enemyAmount == 0)
+            if (AreAllTargetsGreen()) //add condition if all enemies are destroyed
             {
-                // Call the Open method on the GateComponent script
-                gateComponent.Open();
-            }
+                //Debug.Log("All targets are green!");
+                // Check if the gateGameObject has the GateComponent script attached
+                GateComponent gateComponent = gateGameObject.GetComponent<GateComponent>();
 
+                if (gateComponent != null && enemyAmount == 0)
+                {
+                    // Call the Open method on the GateComponent script
+                    gateComponent.Open();
+                }
+
+            }
+            OpenGates();
         }
-        OpenGates();
+            
     }
 
  

@@ -10,7 +10,7 @@ public class FinishLevel : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Player finished level");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         }
     }
 }

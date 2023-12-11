@@ -129,14 +129,14 @@ public class CharacterMovement : MonoBehaviour
      }
 
      public void Death()
-    {
+     {
         if(GameManager.Instance.health <= 0)
         {
-             CharacterPlaceholder.transform.position = originalPlayerPosition;
-             GameManager.Instance.health= 10;
+            SceneManager.LoadScene(4);
+            GameManager.Instance.health= 10;
             GameManager.Instance.score -= 500;
         }
-    }
+     }
 
     public void Heal()
     {
@@ -165,18 +165,5 @@ public class CharacterMovement : MonoBehaviour
             aSource.loop = true;
         }
         aSource.Play();
-    }
-
-    public void Hurt()
-    {
-        GameManager.Instance.health--;
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            Hurt();
-        }
     }
 }

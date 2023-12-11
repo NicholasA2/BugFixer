@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AmmoUIFinalLevel : MonoBehaviour
+public class UIAmmoScript : MonoBehaviour
 {
+    public Text text;
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Text>().text = "Ammo: " + GameManager.Instance.ammo;
+        text.text = "Ammo: 5";
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = "Ammo: " + GameManager.Instance.ammo;
+        text.text = "Ammo: " + GameManager.Instance.ammo;
     }
 }

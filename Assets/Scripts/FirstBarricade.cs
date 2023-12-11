@@ -31,7 +31,7 @@ public class FirstBarricade : MonoBehaviour
     public void ClearingEnemies()
     {
         progress++;
-        if (progress >= 3)
+        if (progress == 3)
         {
             OpenFirstBarricade();
         }

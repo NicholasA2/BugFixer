@@ -28,7 +28,7 @@ public class FinalBarricade : MonoBehaviour
     public void ClearingEnemies()
     {
         progress++;
-        if (progress >= 10)
+        if (progress == 10)
         {
             OpenFinalBarricade();
         }
