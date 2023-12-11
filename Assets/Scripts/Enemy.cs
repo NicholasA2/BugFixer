@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent nav;
     Transform move;
     public AudioSource source;
+    public AudioSource hurtPlayer;
     public Transform blood;
 
     private void Awake()
@@ -43,6 +44,7 @@ public class Enemy : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             GameManager.Instance.TakeDamage();
+            hurtPlayer.Play();
         }
     }
 
@@ -59,6 +61,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
             GameManager.Instance.enemyAmount -= 1;
+            GameManager.Instance.score += 100;
             if(SceneManager.GetActiveScene().buildIndex == 3)
             {
                 FirstBarricade.Instance.ClearingEnemies();

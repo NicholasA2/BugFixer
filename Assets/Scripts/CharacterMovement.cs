@@ -134,7 +134,6 @@ public class CharacterMovement : MonoBehaviour
         {
             SceneManager.LoadScene(4);
             GameManager.Instance.health= 10;
-            GameManager.Instance.score -= 500;
         }
      }
 

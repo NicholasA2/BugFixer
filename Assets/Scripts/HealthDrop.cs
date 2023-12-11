@@ -9,8 +9,8 @@ public class HealthDrop : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //GameManager.Instance.AddHealingToInventory();
-            //GameManager.Instance.PickupScore();
+            GameManager.Instance.AddHealingToInventory();
+            GameManager.Instance.PickupScore();
             gameObject.SetActive(false);
         }
     }

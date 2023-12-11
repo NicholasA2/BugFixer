@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
     public void OnGameStart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.Instance.score = 0;
     }
 
     public void OnGameStop()
@@ -18,5 +19,6 @@ public class MenuManager : MonoBehaviour
     public void OnRestartGame()
     {
         SceneManager.LoadScene(1);
+        GameManager.Instance.score = 0;
     }
 }
