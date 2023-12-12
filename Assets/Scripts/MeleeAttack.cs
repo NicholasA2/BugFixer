@@ -20,7 +20,7 @@ public class MeleeAttack : MonoBehaviour
         if (timer <= 0.0f)
         {
             
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton(0))
             {
                 Debug.Log("Attack");
                 Attack();

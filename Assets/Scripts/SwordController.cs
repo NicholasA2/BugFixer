@@ -20,7 +20,7 @@ public class SwordController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && !isAttacking)
+        if (Input.GetMouseButton(0) && !isAttacking)
         {
             // Trigger attack animation or movement
             StartCoroutine(Attack());
