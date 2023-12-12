@@ -10,6 +10,7 @@ TagManager:
   - Target
   - Gate
   - Goal1
+  - Throne
   layers:
   - Default
   - TransparentFX
