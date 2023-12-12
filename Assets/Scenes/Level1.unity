@@ -10352,9 +10352,10 @@ MonoBehaviour:
 
     Q to slow down time
 
-    E to evade
+    You can control the
 
-    Camera is mouse
+    camera
+    with your mouse
 
 '
   m_isRightToLeft: 0
