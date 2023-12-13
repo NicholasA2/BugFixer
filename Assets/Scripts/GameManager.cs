@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
-    /*
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -51,24 +51,9 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
     }
-    */
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Make sure GameManager persists between scenes
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     void Update()
     {
-        Debug.Log("gm score: " + score);
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             if (AreAllTargetsGreen()) //add condition if all enemies are destroyed

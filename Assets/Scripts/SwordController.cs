@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordController : MonoBehaviour
@@ -19,7 +20,7 @@ public class SwordController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isAttacking)
+        if (Input.GetMouseButton(0) && !isAttacking)
         {
             // Trigger attack animation or movement
             StartCoroutine(Attack());
@@ -33,21 +34,23 @@ public class SwordController : MonoBehaviour
 
         // Play your sword attack animation here if you have one
 
-        Quaternion initialRotation = transform.localRotation;
+        float attackDuration = 0.2f; // Adjust the duration as needed
+
+        // Rotate the sword forward (downward) during the attack
+        Quaternion initialRotation = transform.rotation;
         Quaternion targetRotation = initialRotation * Quaternion.Euler(90f, 0f, 0f); // Rotate around the x-axis by 90 degrees
 
-        float attackDuration = 0.2f; // Adjust the duration as needed
         float elapsedTime = 0f;
 
         while (elapsedTime < attackDuration)
         {
-            transform.localRotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / attackDuration);
+            transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / attackDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Reset the sword local rotation
-        transform.localRotation = initialRotation;
+        // Reset the sword rotation
+        transform.rotation = initialRotation;
 
         isAttacking = false;
     }

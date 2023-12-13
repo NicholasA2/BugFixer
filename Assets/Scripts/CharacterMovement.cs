@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -135,9 +134,8 @@ public class CharacterMovement : MonoBehaviour
         {
             SceneManager.LoadScene(4);
             GameManager.Instance.health= 10;
-
         }
-    }
+     }
 
     public void Heal()
     {
