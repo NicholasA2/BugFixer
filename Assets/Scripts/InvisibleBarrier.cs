@@ -37,7 +37,7 @@ public class InvisibleBarrier : MonoBehaviour
     public void TutorialProgress()
     {
         progress++;
-        if(progress >= 4)
+        if(progress == 4)
         {
             tutorialComplete();
         }
