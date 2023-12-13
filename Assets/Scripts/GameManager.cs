@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
-
+    /*
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -51,6 +51,31 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
     }
+    */
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Make sure GameManager persists between scenes
+        }
+        else
+        {
+            // If the GameManager is in a scene where it should not persist, destroy it
+            if (SceneManager.GetActiveScene().buildIndex != 1)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                // If the GameManager is in the game scene, update references and ensure it persists
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+    }
+
 
     void Update()
     {
