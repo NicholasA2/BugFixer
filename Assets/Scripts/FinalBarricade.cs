@@ -6,8 +6,7 @@ public class FinalBarricade : MonoBehaviour
 {
     public static FinalBarricade Instance { get; private set; }
     public int progress = 0;
-    public GameObject face;
-    public GameObject tpose;
+    public GameObject chicken;
 
     void Start()
     {
@@ -23,6 +22,7 @@ public class FinalBarricade : MonoBehaviour
     {
         //condition is that all other enemies must be dead for the door to disappear
         gameObject.SetActive(false);
+        Instantiate(chicken, new Vector3(99.19545f, 4.53f, -4.730917f), Quaternion.identity);
     }
 
     public void ClearingEnemies()

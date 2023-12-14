@@ -2777,8 +2777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progress: 0
-  face: {fileID: 5870466869514546588, guid: 5e62bed69d6f7974bb13958a250de0a1, type: 3}
-  tpose: {fileID: 5420607857257111629, guid: 39fddb46db3dcc04b8564f0524bc4f7d, type: 3}
+  chicken: {fileID: 1767663768970106, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
 --- !u!1001 &308606743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14390,6 +14389,7 @@ MonoBehaviour:
   score: 0
   enemyAmount: 10
   health: 10
+  boss: 1
   gateGameObject: {fileID: 0}
 --- !u!4 &1815170256
 Transform:

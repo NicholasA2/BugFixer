@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int enemyAmount = 10;
     public int health = 10;
+    public int boss = 1;
    
     private GameObject[] targets;
     public GameObject gateGameObject;

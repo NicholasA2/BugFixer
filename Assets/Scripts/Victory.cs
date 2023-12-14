@@ -9,7 +9,10 @@ public class Victory : MonoBehaviour
     {
         if (other.gameObject.tag == "Throne")
         {
-            SceneManager.LoadScene(5);
+            if (GameManager.Instance.boss == 0)
+            {
+                SceneManager.LoadScene(5);
+            }
         }
     }
 }
