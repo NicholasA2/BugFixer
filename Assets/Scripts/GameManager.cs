@@ -40,19 +40,6 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
-    /*
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-    */
 
     private void Awake()
     {
@@ -84,7 +71,6 @@ public class GameManager : MonoBehaviour
         {
             if (AreAllTargetsGreen()) //add condition if all enemies are destroyed
             {
-                //Debug.Log("All targets are green!");
                 // Check if the gateGameObject has the GateComponent script attached
                 GateComponent gateComponent = gateGameObject.GetComponent<GateComponent>();
 
@@ -95,9 +81,7 @@ public class GameManager : MonoBehaviour
                 }
 
             }
-            OpenGates();
         }
-            
     }
 
  
@@ -133,16 +117,28 @@ public class GameManager : MonoBehaviour
         score += 10;
     }
 
-    public void OpenGates()
-    {
-        if(enemyAmount == 0)
-        {
-            //destroy barrier
-        }
-    }
-
     public void TakeDamage()
     {
         health -= 2;
+    }
+
+    public void ResetGameManager()
+    {
+        healingPotions = 1;
+        ammo = 5;
+        score = 0;
+        enemyAmount = 10;
+        health = 10;
+        boss = 1;
+
+        targets = null;
+        gateGameObject = null;
+
+        InvisibleBarrier.Instance.progress = 0;
+        Start();
+        Awake();
+
+        // Load the scene asynchronously
+        SceneManager.LoadScene(1);    
     }
 }
